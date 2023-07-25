@@ -12,4 +12,3 @@ class Users_books(models.Model):
     total_page = models.PositiveIntegerField()
     current_page = models.PositiveIntegerField()
     description = models.TextField()
-    book_image = models.ImageField(upload_to='static/images')

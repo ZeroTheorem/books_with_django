@@ -3,6 +3,10 @@ from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from .models import my_User
 
 class Login_form(AuthenticationForm):
+    def __init__(self, *args, **kwargs):
+        super(Login_form, self).__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            field.widget.attrs['class'] = 'form-control'
 
     class Meta:
         model = my_User
@@ -11,6 +15,13 @@ class Login_form(AuthenticationForm):
 
 class Registration_form(UserCreationForm):
 
+    def __init__(self, *args, **kwargs):
+        super(Registration_form, self).__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            field.widget.attrs["class"] = "form-control"
+            field.help_text = ""
+
+
     class Meta:
         model = my_User
-        fields = ('username', 'password')
+        fields = ('username', 'password1', 'password2')

@@ -1,0 +1,38 @@
+body {
+    background-color: #212328;
+}
+
+
+p {
+    color: white;
+}
+
+.box {
+    display: flex;
+    flex-direction: column;
+    height: 350px;
+    width: 200px;
+    margin-top: 270px;
+    margin-left: 720px;
+    float: left
+}
+
+.box .form-control {
+    text-align: center;
+    background-color: #212328;
+    color: white;
+}
+
+
+
+#subm_input {
+    margin-left: 5px;
+    width: 180px;
+}
+
+
+a {
+    margin: auto;
+    margin-right: 57px;
+    margin-top: 20px;
+}
