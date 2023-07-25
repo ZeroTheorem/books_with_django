@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
+{%load media% }
 
 <head>
     <meta charset="UTF-8">
@@ -51,6 +52,8 @@
                                 autocomplete="off" placeholder="Кол-во страниц" required>
                             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="description"
                                 placeholder="Описание" required></textarea>
+                            <input class="form-control form-control-sm" type="file" id="send_file" name="book_image"
+                                required>
                             <input class="btn btn btn-outline-success" type="submit" value="Создать" id="submit_btn">
                         </form>
                     </div>
@@ -62,9 +65,9 @@
     <a href="{% url 'logout' %}">выйти</a>
     {%for el in result%}
     <div class=box>
-        <img src="../static/images/меню 24.01.23" alt="">
+        <img src="{{el.book_image.url}}" alt="">
 
-        <input type="submit" class="btn btn-outline-light" value="{{el.pk}}" data-bs-toggle="modal" id="reveal_input"
+        <input type="submit" class="btn btn-outline-light" value="{{el.owner}}" data-bs-toggle="modal" id="reveal_input"
             data-bs-target="#{{el.pk}}" data-bs-whatever="@getbootstrap" />
         <div class="modal fade" id="{{el.pk}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">

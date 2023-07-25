@@ -12,7 +12,8 @@ def main_page(request):
                     year_of_writing=request.POST["year_of_writing"],
                     total_page=request.POST["total_page"],
                     current_page=request.POST["current_page"],
-                    description=request.POST["description"],)
+                    description=request.POST["description"],
+                    book_image=request.FILES['book_image'])
         book.save()
         return render(request, 'mainapp/compleated_page.html')
 
