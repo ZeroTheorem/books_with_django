@@ -7,6 +7,7 @@ class Login_form(AuthenticationForm):
         super(Login_form, self).__init__(*args, **kwargs)
         for field_name, field in self.fields.items():
             field.widget.attrs['class'] = 'form-control'
+            field.widget.attrs['autocomplete'] = "off"
 
     class Meta:
         model = my_User
@@ -19,6 +20,7 @@ class Registration_form(UserCreationForm):
         super(Registration_form, self).__init__(*args, **kwargs)
         for field_name, field in self.fields.items():
             field.widget.attrs["class"] = "form-control"
+            field.widget.attrs['autocomplete'] = "off"
             field.help_text = ""
 
 

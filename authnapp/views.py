@@ -1,4 +1,4 @@
-from django.contrib import auth
+from django.contrib import auth, messages
 from django.shortcuts import HttpResponseRedirect, render
 from django.urls import reverse
 from authnapp.forms import Login_form, Registration_form
@@ -20,6 +20,8 @@ def login_page(request):
         if user and user.is_active:
             auth.login(request, user)
             return HttpResponseRedirect(reverse("copleated_book"))
+        else:
+            messages.error(request, 'username or password not correct')
 
     content = {"login_form": login_form}
     return render(request, "authn.html", content)

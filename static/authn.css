@@ -7,6 +7,7 @@ p {
     color: white;
 }
 
+
 .box {
     display: flex;
     flex-direction: column;
