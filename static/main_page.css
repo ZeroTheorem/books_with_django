@@ -160,7 +160,7 @@ header .nav h3 {
     margin-top: 20px;
 }
 
-#logout {
+#logout:hover {
     color: red;
 }
 

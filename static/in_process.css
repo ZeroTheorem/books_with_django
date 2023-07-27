@@ -40,7 +40,7 @@ body {
     margin: auto;
 }
 
-#logout {
+#logout:hover {
     color: red;
 }
 

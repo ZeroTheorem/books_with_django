@@ -58,8 +58,15 @@ hr .new1 {
     background-color: white;
 }
 
-a {
+
+
+.nav-link {
     margin-bottom: -10px;
     margin-top: 10px;
     color: white;
+
+}
+
+.nav-link:hover {
+    color: green
 }
