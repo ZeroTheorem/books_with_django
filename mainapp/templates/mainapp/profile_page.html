@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/profile_page.css">
+    <title>Books Counter</title>
+
+</head>
+
+<body>
+    <div class="container mt-4 mb-4 p-3 d-flex justify-content-center">
+        <div class="card p-4">
+            <div class=" image d-flex flex-column justify-content-center align-items-center"> <button> <img
+                        src={{user.avatar.url}} height="200" width="200" /></button> <span
+                    class="name mt-3">{{user.username}}</span>
+                <div class="d-flex flex-row justify-content-center align-items-center mt-3"> <span
+                        class="number">{{books}}
+                        <span class="follow">books</span></span> </div>
+                <div class=" px-2 rounded mt-4 date ">
+                    <span class="join">Joined {{user.date_joined|date:'d D Y'}}</span>
+                </div>
+                <a href="{% url 'copleated_book' %}" id="login">Главная</a>
+            </div>
+        </div>
+    </div>
+</body>

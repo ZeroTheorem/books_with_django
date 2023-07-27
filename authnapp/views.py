@@ -31,7 +31,7 @@ def login_page(request):
 def registration_page(request):
 
     if request.method == "POST":
-        register_form = Registration_form(request.POST)
+        register_form = Registration_form(request.POST, request.FILES)
 
         if register_form.is_valid():
             register_form.save()

@@ -17,7 +17,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
-from mainapp.views import main_page, page_in_process
+from mainapp.views import main_page, page_in_process, profile_page
 from authnapp.views import login_page, registration_page, logout
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,7 +25,8 @@ urlpatterns = [
     path("process/", page_in_process, name='process_books'),
     path('login/', login_page, name='login'),
     path('logout/', logout, name='logout'),
-    path('reg/', registration_page, name='reg')
+    path('reg/', registration_page, name='reg'),
+    path('profile/', profile_page, name='profile')
 ]
 
 

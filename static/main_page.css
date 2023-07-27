@@ -1,5 +1,11 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
 body {
     background-color: #212328;
+
 }
 
 
@@ -164,4 +170,10 @@ header .nav h3 {
     margin-top: 300px;
     text-align: center;
     color: white;
+}
+
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
 }

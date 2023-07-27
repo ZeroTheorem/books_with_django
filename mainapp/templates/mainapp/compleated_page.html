@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
-{%load media% }
+
 
 <head>
     <meta charset="UTF-8">
@@ -26,6 +26,7 @@
                 data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap" />
             <a href="{% url 'copleated_book' %}" class="nav-link px-2 link-dark">Завершенные</a>
             <a href="{% url 'process_books' %}" class="nav-link px-2 link-dark">В процессе</a>
+            <a href="{% url 'profile' %}" class="nav-link px-2 link-dark" id="logout">Профиль</a>
             <a href="{% url 'logout' %}" class="nav-link px-2 link-dark" id="logout">Выйти</a>
         </ul>
     </header>

@@ -1,0 +1,65 @@
+* {
+    margin: 0;
+    padding: 0
+}
+
+body {
+    background-color: #212328
+}
+
+.card {
+    margin-top: 230px;
+    width: 350px;
+    background-color: #212328;
+    border: none;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+
+.image img {
+    border-style: double;
+    margin: auto;
+}
+
+.name {
+    font-size: 22px;
+    font-weight: bold;
+    color: white
+}
+
+.number {
+    font-size: 22px;
+    font-weight: bold;
+    color: white;
+}
+
+.follow {
+    font-size: 12px;
+    font-weight: 500;
+    color: white
+}
+
+
+.icons i {
+    font-size: 19px
+}
+
+hr .new1 {
+    border: 1px solid
+}
+
+.join {
+    font-size: 14px;
+    color: black;
+    font-weight: bold
+}
+
+.date {
+    background-color: white;
+}
+
+a {
+    margin-bottom: -10px;
+    margin-top: 10px;
+    color: white;
+}

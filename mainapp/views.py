@@ -60,3 +60,10 @@ def page_in_process(request):
             pages = sum((x.total_page for x in result))
             content = {"result": result, "books": books, "pages": pages}
             return render(request, 'mainapp/process_page.html', content)
+
+
+
+def profile_page(request):
+    result = Users_books.objects.filter(owner=request.user, current_page__gte=F('total_page'))
+    content = {'books': len(result)}
+    return render(request, 'mainapp/profile_page.html', content)
