@@ -24,8 +24,8 @@
             <h3 class="lead">Книг: {{books}} &nbsp&nbsp Cтраниц: {{pages}} </h3>
             <input type="submit" class="btn btn-success" value="Добавить" data-bs-toggle="modal" id="open_form"
                 data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap" />
-            <a href="/" class="nav-link px-2 link-dark">Завершенные</a>
-            <a href="/in_process" class="nav-link px-2 link-dark">В процессе</a>
+            <a href="{% url 'copleated_book' %}" class="nav-link px-2 link-dark">Завершенные</a>
+            <a href="{% url 'process_books' %}" class="nav-link px-2 link-dark">В процессе</a>
             <a href="{% url 'logout' %}" class="nav-link px-2 link-dark" id="logout">Выйти</a>
         </ul>
     </header>
