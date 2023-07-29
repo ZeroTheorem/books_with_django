@@ -135,3 +135,6 @@ AUTH_USER_MODEL = 'authnapp.my_User'
 MEDIA_ROOT = path.join(BASE_DIR, 'media')
 
 MEDIA_URL = '/media/'
+
+
+LOGIN_URL = 'login'

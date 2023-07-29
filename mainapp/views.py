@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.conf import settings
+from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from django.http import HttpResponseRedirect
 from mainapp.models import Users_books
@@ -8,7 +9,7 @@ from django.db.models import F
 
 # Create your views here.
 
-
+@login_required
 def main_page(request):
     if request.method == "POST":
         if request.POST.get('book_id'):
@@ -28,15 +29,15 @@ def main_page(request):
             return HttpResponseRedirect(reverse('copleated_book'))
 
     else:
-        if request.user.is_authenticated:
-            result = Users_books.objects.filter(owner=request.user, current_page__gte=F('total_page'))
-            books = len(result)
-            pages = sum((x.total_page for x in result))
-            content = {"result": result, "books": books, "pages": pages}
-            return render(request, 'mainapp/compleated_page.html', content)
-        return render(request, 'mainapp/compleated_page.html')
+        result = Users_books.objects.filter(owner=request.user, current_page__gte=F('total_page'))
+        books = len(result)
+        pages = sum((x.total_page for x in result))
+        content = {"result": result, "books": books, "pages": pages}
+        return render(request, 'mainapp/compleated_page.html', content)
 
 
+
+@login_required
 def page_in_process(request):
     if request.method == "POST":
         if request.POST.get('book_id'):
