@@ -16,8 +16,7 @@ def main_page(request):
         if request.POST.get("book_id"):
             Users_books.objects.filter(pk=request.POST["book_id"]).delete()
             os.remove(
-                os.path.join(settings.MEDIA_ROOT,
-                             request.POST["delete_book_image"])
+                os.path.join(settings.MEDIA_ROOT, request.POST["delete_book_image"])
             )
             return HttpResponseRedirect(reverse("mainapp:copleated_book"))
         else:
