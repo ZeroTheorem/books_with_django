@@ -6,7 +6,6 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
     dependencies = [
@@ -15,17 +14,32 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Users_books',
+            name="Users_books",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('book_name', models.CharField(max_length=50)),
-                ('author_name', models.CharField(max_length=50)),
-                ('year_of_writing', models.PositiveIntegerField()),
-                ('total_page', models.IntegerField()),
-                ('current_page', models.IntegerField()),
-                ('description', models.TextField()),
-                ('book_image', models.ImageField(upload_to='images/')),
-                ('owner', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='books', to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("book_name", models.CharField(max_length=50)),
+                ("author_name", models.CharField(max_length=50)),
+                ("year_of_writing", models.PositiveIntegerField()),
+                ("total_page", models.IntegerField()),
+                ("current_page", models.IntegerField()),
+                ("description", models.TextField()),
+                ("book_image", models.ImageField(upload_to="images/")),
+                (
+                    "owner",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="books",
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
         ),
     ]
