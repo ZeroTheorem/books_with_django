@@ -1,0 +1,18 @@
+body {
+    background-color: #212328;
+}
+
+h1 {
+    font-size: 37px;
+    text-align: center;
+    color: white;
+    margin-top: 25%;
+}
+
+a {
+    color: white;
+}
+
+a:hover {
+    color: yellow
+}

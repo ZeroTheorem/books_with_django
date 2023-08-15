@@ -3,10 +3,6 @@ body {
 }
 
 
-p {
-    color: white;
-}
-
 
 .box {
     display: flex;
@@ -18,22 +14,15 @@ p {
     float: left
 }
 
-.box .form-control {
+.box form p {
     text-align: center;
     background-color: #212328;
     color: white;
 }
 
-
-
-#subm_input {
-    margin-left: 5px;
-    width: 180px;
-}
-
-
-a {
-    margin: auto;
-    margin-right: 57px;
-    margin-top: 20px;
+.box form p input {
+    width: 500px;
+    text-align: center;
+    background-color: #212328;
+    color: white;
 }

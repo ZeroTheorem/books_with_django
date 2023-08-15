@@ -16,9 +16,10 @@ def main_page(request):
         if request.POST.get("book_id"):
             Users_books.objects.filter(pk=request.POST["book_id"]).delete()
             os.remove(
-                os.path.join(settings.MEDIA_ROOT, request.POST["delete_book_image"])
+                os.path.join(settings.MEDIA_ROOT,
+                             request.POST["delete_book_image"])
             )
-            return HttpResponseRedirect(reverse("copleated_book"))
+            return HttpResponseRedirect(reverse("mainapp:copleated_book"))
         else:
             book = Users_books(
                 owner=request.user,
@@ -31,7 +32,7 @@ def main_page(request):
                 book_image=request.FILES["book_image"],
             )
             book.save()
-            return HttpResponseRedirect(reverse("copleated_book"))
+            return HttpResponseRedirect(reverse("mainapp:copleated_book"))
 
     else:
         result = Users_books.objects.filter(
@@ -50,7 +51,7 @@ def page_in_process(request):
             Users_books.objects.filter(pk=request.POST["book_id"]).update(
                 current_page=request.POST["update_current_page"]
             )
-            return HttpResponseRedirect(reverse("process_books"))
+            return HttpResponseRedirect(reverse("mainapp:process_books"))
         else:
             book = Users_books(
                 owner=request.user,
@@ -64,7 +65,7 @@ def page_in_process(request):
             )
             book.save()
 
-            return HttpResponseRedirect(reverse("process_books"))
+            return HttpResponseRedirect(reverse("mainapp:process_books"))
 
     else:
         result = Users_books.objects.filter(
