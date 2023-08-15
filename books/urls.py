@@ -16,17 +16,19 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from mainapp.views import main_page, page_in_process, profile_page
-from authnapp.views import login_page, registration_page, logout
+from django.contrib.auth.views import (
+    LoginView,
+    LogoutView
+)
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("", main_page, name='copleated_book'),
-    path("process/", page_in_process, name='process_books'),
-    path('login/', login_page, name='login'),
-    path('logout/', logout, name='logout'),
-    path('reg/', registration_page, name='reg'),
-    path('profile/', profile_page, name='profile')
+    path('books/', include('mainapp.urls', namespace='mainapp')),
+    path('login/', LoginView.as_view(), name='login'),
+    path('logout/', LogoutView.as_view(), name='logout'),
 ]
 
 

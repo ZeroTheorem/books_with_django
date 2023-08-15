@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'my_authapp.apps.MyAuthappConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -38,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'mainapp',
-    'authnapp',
 ]
 
 MIDDLEWARE = [
@@ -122,19 +122,19 @@ USE_TZ = True
 STATIC_URL = '/static/'
 from os import path
 
-STATICFILES_DIRS = (path.join(BASE_DIR, 'static'), )
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AUTH_USER_MODEL = 'authnapp.my_User'
+AUTH_USER_MODEL = 'auth.User'
 
 
 MEDIA_ROOT = path.join(BASE_DIR, 'media')
 
 MEDIA_URL = '/media/'
 
-
+LOGIN_REDIRECT_URL = 'mainapp:process_books'
 LOGIN_URL = 'login'
+LOGOUT_URL = 'logout'

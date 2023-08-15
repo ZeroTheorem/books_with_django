@@ -55,12 +55,12 @@ def page_in_process(request):
             book.save()
             return HttpResponseRedirect(reverse('process_books'))
 
-    if request.user.is_authenticated:
-            result = Users_books.objects.filter(owner=request.user, current_page__lt=F('total_page'))
-            books = len(result)
-            pages = sum((x.total_page for x in result))
-            content = {"result": result, "books": books, "pages": pages}
-            return render(request, 'mainapp/process_page.html', content)
+    else:
+        result = Users_books.objects.filter(owner=request.user, current_page__lt=F('total_page'))
+        books = len(result)
+        pages = sum((x.total_page for x in result))
+        content = {"result": result, "books": books, "pages": pages}
+        return render(request, 'mainapp/process_page.html', content)
 
 
 

@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class AuthnappConfig(AppConfig):
+class MyAuthappConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'authnapp'
+    name = 'my_authapp'
