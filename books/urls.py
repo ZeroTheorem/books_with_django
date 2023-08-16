@@ -18,6 +18,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 from mainapp.views import main_page, page_in_process, profile_page
+from my_authapp.views import registration
 from django.contrib.auth.views import (
     LoginView,
     LogoutView,
@@ -29,13 +30,15 @@ from django.contrib.auth.views import (
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("books/", include("mainapp.urls", namespace="mainapp")),
+    path('rigister/', registration, name='registration'),
     path("login/", LoginView.as_view(), name="login"),
     path("logout/", LogoutView.as_view(), name="logout"),
     path("password-change/", PasswordChangeView.as_view(), name="password_change"),
-    path("password-change/done/", PasswordChangeDoneView.as_view(),
-         name="password_change_done"),
-
-
+    path(
+        "password-change/done/",
+        PasswordChangeDoneView.as_view(),
+        name="password_change_done",
+    ),
 ]
 
 
