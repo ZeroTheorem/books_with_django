@@ -29,6 +29,7 @@ def edit(request):
         )
         if user_form.is_valid():
             user_form.save()
+        return render(request, "mainapp/profile_page.html")
     else:
         user_form = ProfileEditForm(instance=request.user.profile)
 
