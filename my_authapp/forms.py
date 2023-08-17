@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django import forms
+from .models import UserProfile
 
 
 class UserRegistrationForm(forms.ModelForm):
@@ -16,3 +17,9 @@ class UserRegistrationForm(forms.ModelForm):
             raise forms.ValidationError("Password don't match")
         else:
             return cd["password_2"]
+
+
+class ProfileEditForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = ["avatar", "date_of_birth"]

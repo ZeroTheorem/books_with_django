@@ -17,8 +17,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
-from mainapp.views import main_page, page_in_process, profile_page
-from my_authapp.views import registration
+from my_authapp.views import registration, edit
 from django.contrib.auth.views import (
     LoginView,
     LogoutView,
@@ -39,6 +38,7 @@ urlpatterns = [
         PasswordChangeDoneView.as_view(),
         name="password_change_done",
     ),
+    path("edit/", edit, name="edit"),
 ]
 
 
