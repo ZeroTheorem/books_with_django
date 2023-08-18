@@ -80,5 +80,6 @@ def profile_page(request):
     result = Users_books.objects.filter(
         owner=request.user, current_page__gte=F("total_page")
     )
-    content = {"books": len(result)}
+    pages = sum((x.total_page for x in result))
+    content = {"books": len(result), "pages": pages}
     return render(request, "mainapp/profile_page.html", content)

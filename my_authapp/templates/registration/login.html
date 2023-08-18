@@ -14,9 +14,9 @@
         <form action="" method="post">
             {{form.as_p}}
             {%csrf_token%}
-            <input type="submit">
+            <input type="submit" value="Send">
+            <a href="{%url 'registration'%}"> or you can register</a>
         </form>
-        <a href="{%url 'registration'%}">now, you can register</a>
     </div>
 </body>
 

@@ -138,3 +138,9 @@ MEDIA_URL = "/media/"
 LOGIN_REDIRECT_URL = "mainapp:process_books"
 LOGIN_URL = "login"
 LOGOUT_URL = "logout"
+
+
+AUTHENTICATION_BACKENDS = [
+    "django.contrib.auth.backends.ModelBackend",
+    "my_authapp.authentication.EmailAuthBackend",
+]

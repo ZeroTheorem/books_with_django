@@ -15,6 +15,9 @@
                 <span class="join">Joined {{user.date_joined|date:'d D Y'}}</span>
             </div>
             <a href="{% url 'mainapp:copleated_book' %}" class="nav-link px-2 link-dark">На галвную</a>
+            <a href="{%url 'password_change'%}" class="nav-link px-2 link-dark">Сменить пароль</a>
+            <a href="{%url 'edit'%}" class="nav-link px-2 link-dark">Редактировать профиль</a>
+
         </div>
     </div>
 </div>
