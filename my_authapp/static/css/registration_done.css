@@ -1,0 +1,31 @@
+/* password_change_done.css */
+
+/* Общие стили для центрирования */
+html,
+body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #212328;
+    /* Замените на нужный вам цвет фона */
+}
+
+h1 {
+    font-size: 37px;
+    text-align: center;
+    padding: 20px;
+    color: white;
+}
+
+/* Дополнительные стили по желанию */
+a {
+    color: white;
+    /* Замените на нужный вам цвет ссылок */
+
+}
+
+a:hover {
+    color: yellow;
+}

@@ -18,6 +18,12 @@ class UserRegistrationForm(forms.ModelForm):
         else:
             return cd["password_2"]
 
+    def clean_email(self):
+        data = self.cleaned_data["email"]
+        if User.objects.filter(email=data).exists():
+            raise forms.ValidationError("Email alredy in use")
+        return data
+
 
 class ProfileEditForm(forms.ModelForm):
     class Meta:

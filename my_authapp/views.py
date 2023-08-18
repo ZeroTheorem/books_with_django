@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .forms import UserRegistrationForm, ProfileEditForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from .models import UserProfile
 
 # Create your views here.
 
@@ -13,6 +14,7 @@ def registration(request):
             new_user = form.save(commit=False)
             new_user.set_password(form.cleaned_data["password"])
             new_user.save()
+            UserProfile.objects.create(user=new_user)
             return render(
                 request, "my_authapp/registration_done.html", {"new_user": new_user}
             )
