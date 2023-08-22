@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "mainapp",
+    "easy_thumbnails",
 ]
 
 MIDDLEWARE = [
@@ -144,3 +145,6 @@ AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",
     "my_authapp.authentication.EmailAuthBackend",
 ]
+
+
+THUMBNAIL_DEBUG = True
