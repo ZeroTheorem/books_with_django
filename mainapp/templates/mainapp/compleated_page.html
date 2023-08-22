@@ -8,10 +8,11 @@
 <div class=box>
     {%load thumbnail%}
     <a href="{{el.book_image.url}}">
-        <img src="{% thumbnail el.book_image 150x0%}" alt="">
+        <img src="{% thumbnail el.book_image 200x0%}" alt="">
     </a>
     <input type="submit" class="btn btn-outline-light" value="Перейти" data-bs-toggle="modal" id="reveal_input"
         data-bs-target="#{{el.pk}}" data-bs-whatever="@getbootstrap" />
+    <p>1</p> <a href="#">like it</a>
     <div class="modal fade" id="{{el.pk}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
