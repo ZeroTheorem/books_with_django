@@ -9,7 +9,9 @@ class Users_books(models.Model):
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="books"
     )
     likes = models.ManyToManyField(
-        settings.AUTH_USER_MODEL, related_name="liked_images"
+        settings.AUTH_USER_MODEL,
+        related_name="liked_images",
+        blank=True,
     )
     book_name = models.CharField(max_length=50)
     author_name = models.CharField(max_length=50)
