@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.conf import settings
-from django.shortcuts import get_list_or_404
+from django.shortcuts import get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
 from django.urls import reverse
@@ -95,7 +95,7 @@ def book_like(request):
     action = request.POST.get("action")
     if book_id and action:
         try:
-            book = get_list_or_404(Users_books, id=book_id)
+            book = get_object_or_404(Users_books, id=book_id)
             if action == "like":
                 book.likes.add(request.user)
             else:
