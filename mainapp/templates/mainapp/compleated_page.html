@@ -61,7 +61,7 @@
 <script>
     const csrftoken = Cookies.get('csrftoken')
     const url = '{% url "mainapp:like" %}';
-    var options = {
+    let options = {
         method: 'POST',
         headers: { 'X-CSRFToken': csrftoken },
         mode: 'same-origin'
@@ -70,14 +70,12 @@
     document.querySelector('a.like')
         .addEventListener('click', function (e) {
             e.preventDefault();
-            var likeButton = this;
+            let likeButton = this;
 
             // add request body
-            var formData = new FormData();
+            let formData = new FormData();
             formData.append('id', likeButton.dataset.id);
             formData.append('action', likeButton.dataset.action);
-            console.log(likeButton.dataset.action)
-            console.log(likeButton.dataset.id)
             options['body'] = formData;
 
             // send HTTP request
@@ -85,18 +83,20 @@
                 .then(response => response.json())
                 .then(data => {
                     if (data['status'] === 'ok') {
-                        var previousAction = likeButton.dataset.action;
+                        let previousAction = likeButton.dataset.action;
 
                         // toggle button text and data-action
-                        var action = previousAction === 'like' ? 'unlike' : 'like';
+                        let action = previousAction === 'like' ? 'unlike' : 'like';
                         likeButton.dataset.action = action;
                         likeButton.innerHTML = action;
 
                         // update like count
-                        var likeCount = document.querySelector('.total');
-                        var totalLikes = parseInt(likeCount.innerHTML);
+                        let likeCount = document.querySelector('.total');
+                        let totalLikes = parseInt(likeCount.innerHTML);
                         likeCount.innerHTML = previousAction === 'like' ? totalLikes + 1 : totalLikes - 1;
+
                     }
+
                 })
         });
 </script>
