@@ -1,9 +1,12 @@
 from django.shortcuts import render
 from django.conf import settings
+from django.shortcuts import get_list_or_404
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.http import require_POST
 from django.urls import reverse
 from django.http import HttpResponseRedirect
 from mainapp.models import Users_books
+from django.http import JsonResponse
 import os
 from django.db.models import F
 
@@ -83,3 +86,21 @@ def profile_page(request):
     pages = sum((x.total_page for x in result))
     content = {"books": len(result), "pages": pages}
     return render(request, "mainapp/profile_page.html", content)
+
+
+@login_required
+@require_POST
+def book_like(request):
+    book_id = request.POST.get("id")
+    action = request.POST.get("action")
+    if book_id and action:
+        try:
+            book = get_list_or_404(Users_books, id=book_id)
+            if action == "like":
+                book.likes.add(request.user)
+            else:
+                book.likes.remove(request.user)
+            return JsonResponse({"status": "ok"})
+        except Users_books.DoesNotExist:
+            pass
+        return JsonResponse({"status": "error"})
