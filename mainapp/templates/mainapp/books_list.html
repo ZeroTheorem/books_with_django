@@ -25,7 +25,7 @@
                         </ul>
 
                     </div>
-                    <form action="" method="post">
+                    <form action="{%url 'mainapp:create_or_delete_book'%}" method="post">
                         {% csrf_token %}
                         <button class="btn btn-outline-danger" id="delete_btn">Удалить</button>
                         <input type="hidden" name="book_id" value="{{el.pk}}" />
