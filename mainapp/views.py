@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
 from mainapp.models import Users_books
 from django.http import HttpResponse
-from django.db.models import F
+
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 # Create your views here.
@@ -13,9 +13,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 @login_required
 def get_all_book(request):
-    result = Users_books.objects.filter(
-        owner=request.user, current_page__gte=F("total_page")
-    )
+    result = Users_books.objects.filter(owner=request.user)
     books = len(result)
     pages = sum((x.total_page for x in result))
     paginator = Paginator(result, 10)
@@ -55,7 +53,6 @@ def create_or_delete_book(request):
             author_name=request.POST["author_name"],
             year_of_writing=request.POST["year_of_writing"],
             total_page=request.POST["total_page"],
-            current_page=request.POST["current_page"],
             description=request.POST["description"],
             book_image=request.FILES["book_image"],
         )

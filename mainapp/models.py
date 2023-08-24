@@ -17,6 +17,5 @@ class Users_books(models.Model):
     author_name = models.CharField(max_length=50)
     year_of_writing = models.PositiveIntegerField()
     total_page = models.IntegerField()
-    current_page = models.IntegerField()
     description = models.TextField()
     book_image = models.ImageField(upload_to="images/")
