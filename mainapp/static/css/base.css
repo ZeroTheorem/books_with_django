@@ -109,34 +109,3 @@ header .nav h3 {
 #logout:hover {
     color: red;
 }
-
-
-.content {
-    margin-bottom: 80px;
-    /* Отступ снизу, больше чем высота пагинатора */
-}
-
-
-
-
-.paginator a {
-    text-decoration: none;
-    color: #333;
-    padding: 8px 15px;
-    margin: 0 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #fff;
-    transition: background-color 0.3s ease, color 0.3s ease;
-
-}
-
-.paginator a:hover {
-    background-color: #333;
-    color: #fff;
-}
-
-.paginator span {
-    margin: 0 10px;
-    color: white;
-}

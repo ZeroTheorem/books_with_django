@@ -6,7 +6,7 @@ from django.views.decorators.http import require_POST
 from django.urls import reverse
 from django.http import HttpResponseRedirect
 from mainapp.models import Users_books
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 import os
 from django.db.models import F
 from time import sleep
@@ -50,11 +50,21 @@ def main_page(request):
             page = paginator.page(page_number)
         except EmptyPage:
             page = paginator.page(paginator.num_pages)
+            return HttpResponse("")
         except PageNotAnInteger:
             page = paginator.page(1)
+        if int(page_number) > 1:
+            return render(
+                request,
+                "mainapp/books_list.html",
+                {"page": page},
+            )
 
-        content = {"page": page, "books": books, "pages": pages}
-        return render(request, "mainapp/compleated_page.html", content)
+        return render(
+            request,
+            "mainapp/compleated_page.html",
+            {"page": page, "books": books, "pages": pages},
+        )
 
 
 @login_required

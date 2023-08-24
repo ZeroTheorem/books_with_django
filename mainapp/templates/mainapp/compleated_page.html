@@ -4,45 +4,34 @@
 <link rel="stylesheet" href="{% static 'css/main_page.css'%} ">
 {%endblock%}
 {%block content%}
-{%for el in page%}
-<div class=box>
-    {%load thumbnail%}
-    <a href="{{el.book_image.url}}">
-        <img src="{% thumbnail el.book_image 200x0%}" alt="">
-    </a>
-    <input type="submit" class="btn btn-outline-light" value="Перейти" data-bs-toggle="modal" id="reveal_input"
-        data-bs-target="#{{el.pk}}" data-bs-whatever="@getbootstrap" />
-    <div class="modal fade" id="{{el.pk}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel1"></h1>
-
-                </div>
-                <div class="modal-body">
-                    <div class="input_group">
-                        <ul class="list-group list-group-flush">
-
-                            <li class="list-group-item">Автор:{{el.author_name}} </li>
-                            <li class="list-group-item">Страниц: {{el.total_page}}</li>
-                            <li class="list-group-item">Год: {{el.year_of_writing}}</li>
-                            <li class="list-group-item" id="description">{{el.description}}</li>
-
-                        </ul>
-
-                    </div>
-                    <form action="" method="post">
-                        {% csrf_token %}
-                        <button class="btn btn-outline-danger" id="delete_btn">Удалить</button>
-                        <input type="hidden" name="book_id" value="{{el.pk}}" />
-                        <input type="hidden" name="delete_book_image" value="{{el.book_image}}" />
-                    </form>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
+<div id="image-list">
+    {% include "mainapp/books_list.html" %}
 </div>
-{%endfor%}
+<script>
+    var page = 1;
+    var emptyPage = false;
+    var blockRequest = false;
+    window.addEventListener('scroll', function (e) {
+        var margin = document.body.clientHeight - window.innerHeight - 200;
+        if (window.pageYOffset > margin && !emptyPage && !blockRequest) {
+            blockRequest = true;
+            page += 1;
+            fetch('?page=' + page)
+                .then(response => response.text())
+                .then(html => {
+                    if (html === '') {
+                        emptyPage = true;
+                    }
+                    else {
+                        var imageList = document.getElementById('image-list');
+                        imageList.insertAdjacentHTML('beforeEnd', html);
+                        blockRequest = false;
+                    }
+                })
+        }
+    });
+    // Запустить события прокрутки
+    const scrollEvent = new Event('scroll');
+    window.dispatchEvent(scrollEvent);
+</script>
 {%endblock%}
