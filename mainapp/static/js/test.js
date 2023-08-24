@@ -4,10 +4,11 @@ document.getElementById('login_form')
         e.preventDefault()
         let name = document.getElementById('name')
         let password = document.getElementById('password')
-
         let formdata = new FormData()
         formdata.append('name', name.value)
         formdata.append('password', password.value)
+
+
 
         let options = {
             method: 'POST',
@@ -16,13 +17,13 @@ document.getElementById('login_form')
 
         }
         options['body'] = formdata
-        console.log(options)
+
 
         fetch("http://127.0.0.1:8000/books/test/", options)
             .then(response => response.json())
             .then(data => {
                 if (data['status'] == 'ok') {
-                    console.log('Успех')
+                    location.href = "http://127.0.0.1:8000/books/"
                 }
                 else {
                     console.log('Провал')

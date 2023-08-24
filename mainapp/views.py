@@ -10,6 +10,7 @@ from django.http import JsonResponse
 import os
 from django.db.models import F
 from time import sleep
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 # Create your views here.
 
@@ -43,7 +44,16 @@ def main_page(request):
         )
         books = len(result)
         pages = sum((x.total_page for x in result))
-        content = {"result": result, "books": books, "pages": pages}
+        paginator = Paginator(result, 10)
+        page_number = request.GET.get("page", 1)
+        try:
+            page = paginator.page(page_number)
+        except EmptyPage:
+            page = paginator.page(paginator.num_pages)
+        except PageNotAnInteger:
+            page = paginator.page(1)
+
+        content = {"page": page, "books": books, "pages": pages}
         return render(request, "mainapp/compleated_page.html", content)
 
 
@@ -112,7 +122,7 @@ def test(request):
         name = request.POST.get("name")
         password = request.POST.get("password")
         if name == "Alex" and password == "aiupwzqp12":
-            return JsonResponse({"status": "ok"})
+            return JsonResponse({"status": "ok", "message": "Hello Alex"})
         else:
             return JsonResponse({"status": "error"})
 
