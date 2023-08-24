@@ -9,6 +9,7 @@ from mainapp.models import Users_books
 from django.http import JsonResponse
 import os
 from django.db.models import F
+from time import sleep
 
 # Create your views here.
 
@@ -104,3 +105,15 @@ def book_like(request):
         except Users_books.DoesNotExist:
             pass
         return JsonResponse({"status": "error"})
+
+
+def test(request):
+    if request.method == "POST":
+        name = request.POST.get("name")
+        password = request.POST.get("password")
+        if name == "Alex" and password == "aiupwzqp12":
+            return JsonResponse({"status": "ok"})
+        else:
+            return JsonResponse({"status": "error"})
+
+    return render(request, "mainapp/test.html")
