@@ -1,6 +1,5 @@
-from django.contrib.auth.models import User
 from django import forms
-from .models import UserProfile
+from .models import UserProfile, CastomUser
 
 
 class UserRegistrationForm(forms.ModelForm):
@@ -8,7 +7,7 @@ class UserRegistrationForm(forms.ModelForm):
     password_2 = forms.CharField(label="Repeat Password", widget=forms.PasswordInput)
 
     class Meta:
-        model = User
+        model = CastomUser
         fields = ["username", "first_name", "email"]
 
     def clean_password_2(self):
@@ -20,7 +19,7 @@ class UserRegistrationForm(forms.ModelForm):
 
     def clean_email(self):
         data = self.cleaned_data["email"]
-        if User.objects.filter(email=data).exists():
+        if CastomUser.objects.filter(email=data).exists():
             raise forms.ValidationError("Email alredy in use")
         return data
 

@@ -4,8 +4,8 @@ from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
 from mainapp.models import Users_books
-from django.http import HttpResponse
-from my_authapp.models import UserProfile
+from django.http import HttpResponse, JsonResponse
+from my_authapp.models import CastomUser, UserProfile
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 # Create your views here.
@@ -60,6 +60,7 @@ def create_or_delete_book(request):
         return redirect("mainapp:copleated_book")
 
 
+@login_required
 def profile_page(request):
     result = Users_books.objects.filter(owner=request.user)
     pages = sum((x.total_page for x in result))
@@ -67,6 +68,27 @@ def profile_page(request):
     return render(request, "mainapp/profile_page.html", content)
 
 
+@login_required
 def users_list(request):
     profiles = UserProfile.objects.exclude(user_id=request.user.id)
     return render(request, "mainapp/users_list.html", {"profiles": profiles})
+
+
+@login_required
+@require_POST
+def follow(request):
+    user_id = request.POST.get("id")
+    action = request.POST.get("action")
+
+    if user_id and action:
+        try:
+            user = CastomUser.objects.get(id=user_id)
+            if action == "follow":
+                request.user.following.add(user)
+            else:
+                request.user.following.remove(user)
+            return JsonResponse({"status": "ok"})
+
+        except CastomUser.DoesNotExist:
+            pass
+    return JsonResponse({"status": "error"})

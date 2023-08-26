@@ -13,8 +13,10 @@
     <p>{{profile.user.username}}</p>
     <p>followers: 0</p>
     <p>Books: {{profile.user.books.count}}</p>
-    <input type="submit" class="btn btn-outline-light" value="Follow" data-bs-toggle="modal" id="reveal_input"
-        data-bs-target="#{{el.pk}}" data-bs-whatever="@getbootstrap" />
+    {%with followers=profile.user.followers.all%}
+    <input type="submit" data-id="{{profile.user.id}}" data-action="{%if request.user in followers%}un{%endif%}follow"
+        class="btn btn-outline-light" value="{%if request.user in followers%}un{%endif%}follow" id="reveal_input" />
+    {%endwith%}
 </div>
 {%endfor%}
 {%endblock%}
