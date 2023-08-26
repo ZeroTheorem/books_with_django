@@ -137,7 +137,7 @@ MEDIA_ROOT = path.join(BASE_DIR, "media")
 
 MEDIA_URL = "/media/"
 
-LOGIN_REDIRECT_URL = "mainapp:process_books"
+LOGIN_REDIRECT_URL = "mainapp:copleated_book"
 LOGIN_URL = "login"
 LOGOUT_URL = "logout"
 

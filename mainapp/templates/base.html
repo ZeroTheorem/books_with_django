@@ -25,6 +25,8 @@
             <h3 class="lead">Книг: {{books}} &nbsp&nbsp Cтраниц: {{pages}} </h3>
             <input type="submit" class="btn btn-success" value="Добавить" data-bs-toggle="modal" id="open_form"
                 data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap" />
+            <a href="{% url 'mainapp:copleated_book' %}" class="nav-link px-2 link-dark">Главная</a>
+            <a href="{% url 'mainapp:users_list' %}" class="nav-link px-2 link-dark">Пользователи</a>
             <a href="{% url 'mainapp:profile' %}" class="nav-link px-2 link-dark">Профиль</a>
             <a href="{% url 'logout' %}" class="nav-link px-2 link-dark" id="logout">Выйти</a>
         </ul>

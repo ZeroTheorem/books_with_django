@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
 from mainapp.models import Users_books
 from django.http import HttpResponse
-
+from my_authapp.models import UserProfile
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 # Create your views here.
@@ -61,9 +61,12 @@ def create_or_delete_book(request):
 
 
 def profile_page(request):
-    result = Users_books.objects.filter(
-        owner=request.user, current_page__gte=F("total_page")
-    )
+    result = Users_books.objects.filter(owner=request.user)
     pages = sum((x.total_page for x in result))
     content = {"books": len(result), "pages": pages}
     return render(request, "mainapp/profile_page.html", content)
+
+
+def users_list(request):
+    profiles = UserProfile.objects.exclude(user_id=request.user.id)
+    return render(request, "mainapp/users_list.html", {"profiles": profiles})
