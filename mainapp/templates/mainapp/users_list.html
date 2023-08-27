@@ -11,7 +11,7 @@
         <img src="{%thumbnail profile.avatar 300x0%}" height="300" width="220">
     </a>
     <p>{{profile.user.username}}</p>
-    <p>followers: 0</p>
+    <p id="followers{{profile.user.id}}">{{profile.user.followers.count}}</p>
     <p>Books: {{profile.user.books.count}}</p>
     {%with followers=profile.user.followers.all%}
     <input type="submit" data-id="{{profile.user.id}}" data-action="{%if request.user in followers%}un{%endif%}follow"

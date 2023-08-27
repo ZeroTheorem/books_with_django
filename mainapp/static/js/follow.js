@@ -27,6 +27,11 @@ document.querySelectorAll("#reveal_input").forEach(follow => {
                     let action = previousaction == 'follow' ? 'unfollow' : 'follow'
                     follow.dataset.action = action
                     follow.value = action
+
+                    let followersCount = document.querySelector(`#followers${id}`)
+                    let followerscount = parseInt(followersCount.innerHTML)
+                    followersCount.innerHTML = previousaction == 'follow' ? followerscount + 1 : followerscount - 1
+
                 }
             })
     })
