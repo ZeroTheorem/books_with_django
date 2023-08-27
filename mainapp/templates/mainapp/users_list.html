@@ -15,8 +15,12 @@
     <p>Books: {{profile.user.books.count}}</p>
     {%with followers=profile.user.followers.all%}
     <input type="submit" data-id="{{profile.user.id}}" data-action="{%if request.user in followers%}un{%endif%}follow"
-        class="btn btn-outline-light" value="{%if request.user in followers%}un{%endif%}follow" id="reveal_input" />
+        class="btn btn-outline-light" value="{%if request.user in followers%}un{%endif%}follow" id="reveal_input"
+        name="follow" />
+    {%csrf_token%}
     {%endwith%}
 </div>
 {%endfor%}
+<script src="//cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
+<script src="{%static 'js/follow.js'%}"></script>
 {%endblock%}
