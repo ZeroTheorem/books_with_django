@@ -22,6 +22,7 @@
     </div>
 </div>
 {%for x in following_actions%}
-<p>{{x.user.username}} {{x.verb}} {{x.target.username}}</p>
+<p>{{x.user.username}} {{x.verb}} {%if x.verb == 'follow'%}{{x.target.username}}{%else%}{{x.target.book_name}}{%endif%}
+</p>
 {%endfor%}
 {%endblock%}

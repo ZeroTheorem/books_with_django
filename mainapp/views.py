@@ -59,6 +59,7 @@ def create_or_delete_book(request):
             book_image=request.FILES["book_image"],
         )
         book.save()
+        create_action(request.user, "read", book)
         return redirect("mainapp:copleated_book")
 
 
