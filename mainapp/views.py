@@ -16,8 +16,6 @@ from actions.models import Action
 @login_required
 def get_all_book(request):
     result = Users_books.objects.filter(owner=request.user)
-    books = len(result)
-    pages = sum((x.total_page for x in result))
     paginator = Paginator(result, 10)
     page_number = request.GET.get("page", 1)
     try:
@@ -37,7 +35,7 @@ def get_all_book(request):
     return render(
         request,
         "mainapp/compleated_page.html",
-        {"page": page, "books": books, "pages": pages},
+        {"page": page},
     )
 
 
@@ -67,7 +65,7 @@ def create_or_delete_book(request):
 def profile_page(request):
     result = Users_books.objects.filter(owner=request.user)
     users_following = request.user.following.values_list("id", flat=True)
-    following_actions = Action.objects.filter(user_id__in=users_following)
+    following_actions = Action.objects.filter(user_id__in=users_following)[:10]
     pages = sum((x.total_page for x in result))
     content = {
         "books": len(result),

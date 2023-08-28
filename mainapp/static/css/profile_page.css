@@ -70,3 +70,18 @@ hr .new1 {
 .nav-link:hover {
     color: green
 }
+
+
+.box {
+    display: flex;
+    flex-direction: column;
+    height: 350px;
+    width: 350px;
+    margin-top: 70px;
+    margin-left: 100px;
+    float: left
+}
+
+.box p {
+    color: white;
+}

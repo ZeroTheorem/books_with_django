@@ -11,6 +11,8 @@
                 class="name mt-3">{{user.username}}</span>
             <div class="d-flex flex-row justify-content-center align-items-center mt-3"> <span class="number">{{books}}
                     <span class="follow">books</span></span> </div>
+            <div class="d-flex flex-row justify-content-center align-items-center mt-3"> <span class="number">{{pages}}
+                    <span class="follow">pages</span></span> </div>
             <div class=" px-2 rounded mt-4 date ">
                 <span class="join">Joined {{user.date_joined|date:'d D Y'}}</span>
             </div>
@@ -21,8 +23,16 @@
         </div>
     </div>
 </div>
-{%for x in following_actions%}
-<p>{{x.user.username}} {{x.verb}} {%if x.verb == 'follow'%}{{x.target.username}}{%else%}{{x.target.book_name}}{%endif%}
-</p>
-{%endfor%}
+<div class="box">
+    {%for x in following_actions%}
+    <p>
+        {{x.user.username}} {{x.verb}}
+        {%if x.verb == 'follow'%}
+        {{x.target.username}}
+        {%else%}
+        {{x.target.book_name}}
+        {%endif%}
+    </p>
+    {%endfor%}
+</div>
 {%endblock%}
