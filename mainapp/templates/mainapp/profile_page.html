@@ -21,4 +21,7 @@
         </div>
     </div>
 </div>
+{%for x in following_actions%}
+<p>{{x.user.username}} {{x.verb}} {{x.target.username}}</p>
+{%endfor%}
 {%endblock%}

@@ -7,6 +7,8 @@ from mainapp.models import Users_books
 from django.http import HttpResponse, JsonResponse
 from my_authapp.models import CastomUser, UserProfile
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from actions.utils import create_action
+from actions.models import Action
 
 # Create your views here.
 
@@ -63,8 +65,14 @@ def create_or_delete_book(request):
 @login_required
 def profile_page(request):
     result = Users_books.objects.filter(owner=request.user)
+    users_following = request.user.following.values_list("id", flat=True)
+    following_actions = Action.objects.filter(user_id__in=users_following)
     pages = sum((x.total_page for x in result))
-    content = {"books": len(result), "pages": pages}
+    content = {
+        "books": len(result),
+        "pages": pages,
+        "following_actions": following_actions,
+    }
     return render(request, "mainapp/profile_page.html", content)
 
 
@@ -85,6 +93,7 @@ def follow(request):
             user = CastomUser.objects.get(id=user_id)
             if action == "follow":
                 request.user.following.add(user)
+                create_action(request.user, "follow", user)
             else:
                 request.user.following.remove(user)
             return JsonResponse({"status": "ok"})

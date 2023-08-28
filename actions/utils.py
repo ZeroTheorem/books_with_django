@@ -6,7 +6,7 @@ from .models import Action
 
 def create_action(user, verb, target=None):
     now = timezone.now()
-    last_minute = now - datetime.datetime.now()
+    last_minute = now - datetime.timedelta(seconds=60)
 
     simular_action = Action.objects.filter(
         user=user, verb=verb, created__gte=last_minute

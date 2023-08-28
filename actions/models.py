@@ -22,7 +22,7 @@ class Action(models.Model):
     )
 
     target_id = models.PositiveIntegerField(null=True, blank=True)
-    terget = GenericForeignKey("target_ct", "target_id")
+    target = GenericForeignKey("target_ct", "target_id")
 
     class Meta:
         indexes = [
