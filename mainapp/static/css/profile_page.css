@@ -8,6 +8,8 @@ body {
 }
 
 .card {
+    display: flex;
+    float: left;
     margin-top: 10px;
     width: 350px;
     background-color: #212328;
@@ -84,4 +86,5 @@ hr .new1 {
 
 .box p {
     color: white;
+    font-size: 20px;
 }
