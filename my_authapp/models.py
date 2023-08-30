@@ -9,6 +9,14 @@ class CastomUser(AbstractUser):
     following = models.ManyToManyField(
         "self", related_name="followers", symmetrical=False
     )
+    count_following = models.PositiveIntegerField(default=0)
+
+    class Meta:
+        indexes = [
+            models.Index(
+                fields=["-count_following"],
+            )
+        ]
 
 
 class UserProfile(models.Model):
