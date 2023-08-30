@@ -65,7 +65,11 @@ def create_or_delete_book(request):
 def profile_page(request):
     result = Users_books.objects.filter(owner=request.user)
     users_following = request.user.following.values_list("id", flat=True)
-    following_actions = Action.objects.filter(user_id__in=users_following)[:10]
+    following_actions = (
+        Action.objects.filter(user_id__in=users_following)
+        .select_related("user")
+        .prefetch_related("target")[:10]
+    )
     pages = sum((x.total_page for x in result))
     content = {
         "books": len(result),
@@ -77,7 +81,11 @@ def profile_page(request):
 
 @login_required
 def users_list(request):
-    profiles = UserProfile.objects.exclude(user_id=request.user.id)
+    profiles = (
+        UserProfile.objects.exclude(user_id=request.user.id)
+        .select_related("user")
+        .prefetch_related("user__books", "user__followers")
+    )
     return render(request, "mainapp/users_list.html", {"profiles": profiles})
 
 
